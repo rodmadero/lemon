@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>
+			New Test
+		</title>
+		<script src="/node_modules/socket.io-client/socket.io.js"></script>
+	</head>
+	<body>
+			<input type="text" id="text-input"><button type="button" id="button">Submit</button>
+		<div id="message-container"></div>
+
+		<script>
+                        var socket = io();
+			
+			var button = document.getElementById('button');
+			var textInput = document.getElementById('text-input');
+			var messageContainer = document.getElementById('message-container');
+
+			button.addEventListener('click',function(){
+				socket.emit('message',textInput.value);
+				textInput.value = '';
+			});
+			socket.on('message',function(msg){
+				console.log('message!');
+				var elem = document.createElement('p');
+				elem.innerText = msg;
+				messageContainer.insertBefore(elem,messageContainer.firstChild);
+			});
+                </script>
+	</body>
+</html>
