@@ -8,6 +8,8 @@ var main = require('./server/routes/main');
 app.set('view engine', 'ejs');
 
 app.use('/node_modules', express.static('node_modules'));
+app.use('/bower_components', express.static('bower_components'));
+app.use('/public', express.static('public'));
 
 app.get('/',main.home);
 

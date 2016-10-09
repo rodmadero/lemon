@@ -5,10 +5,18 @@
 		</title>
         <link type="text/css" href="../public/css/main.css">
 		<script src="/node_modules/socket.io-client/socket.io.js"></script>
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<script src="/bower_components/riot/riot+compiler.js"></script>
+		
+		<script src="public/tags/eyes.tag" type="riot/tag"></script>
 	</head>
 	<body>
 			<input type="text" id="text-input"><button type="button" id="button">Submit</button>
 		<div id="message-container"></div>
+
+	<eyes></eyes>
+	<eyes></eyes>
+
 
 		<script>
                         var socket = io();
@@ -27,6 +35,8 @@
 				elem.innerText = msg;
 				messageContainer.insertBefore(elem,messageContainer.firstChild);
 			});
+
+			riot.mount('eyes');		
                 </script>
 	</body>
 </html>
