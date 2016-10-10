@@ -1,0 +1,11 @@
+<html>
+        <head>
+                <title>
+                        <%= title %>
+                </title>
+
+		<% for (var i=0;i<dependencies.css.length;i++) { %>
+                	<link rel="stylesheet" href="<%= dependencies.css[i] %>">
+		<% } %>
+        </head>
+        <body>

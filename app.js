@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var main = require('./server/routes/main');
+var index = require('./server/routes/index');
 
 app.set('view engine', 'ejs');
 
@@ -11,11 +11,27 @@ app.use('/node_modules', express.static('node_modules'));
 app.use('/bower_components', express.static('bower_components'));
 app.use('/public', express.static('public'));
 
-app.get('/',main.home);
+app.locals.dependencies = {
+	js: [
+		'/node_modules/socket.io-client/socket.io.js',
+		'/bower_components/jquery/dist/jquery.js',
+		'/bower_components/bootstrap/dist/js/bootstrap.js',
+		'/bower_components/riot/riot+compiler.js'
+	],
+	css: [
+		'/bower_components/bootstrap/dist/css/bootstrap.css'
+	],
+	tags: [
+		'/public/tags/eyes.tag'
+	]
+};
+app.locals.title = 'Spread the dots around!';
+
+app.get('/',index.home);
 
 io.on('connection',function(socket){
-	socket.on('message',function(msg){
-		io.emit('message',msg);
+	socket.on('dot-added',function(options){
+		socket.broadcast.emit('dot-added',options);
 	});
 });
 

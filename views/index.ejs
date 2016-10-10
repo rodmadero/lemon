@@ -1,30 +1,3 @@
-<html>
-	<head>
-		<title>
-			New Test
-		</title>
-		<script src="/node_modules/socket.io-client/socket.io.js"></script>
-		<script src="/bower_components/jquery/dist/jquery.js"></script>
-		<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="/bower_components/riot/riot+compiler.js"></script>
-				
-		<script src="public/tags/eyes.tag" type="riot/tag"></script>
+<% include partials/header.ejs %>
 
-		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-	</head>
-	<body>
-
-		<script>
-                        var socket = io();
-			
-			socket.on('message',function(msg){
-				console.log('message!');
-				var elem = document.createElement('p');
-				elem.innerText = msg;
-				messageContainer.insertBefore(elem,messageContainer.firstChild);
-			});
-
-			riot.mount('*');		
-                </script>
-	</body>
-</html>
+<% include partials/closer.ejs %>

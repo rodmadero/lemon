@@ -1,0 +1,14 @@
+
+		<% for (var i=0;i<dependencies.js.length;i++) { %>
+                        <script src="<%= dependencies.js[i] %>"></script>
+                <% } %>
+
+                <% for (var i=0;i<dependencies.tags.length;i++) { %>
+                        <script src="<%= dependencies.tags[i] %>" type="riot/tag"></script>
+                <% } %>
+
+		<% for (var i=0;i<page_scripts.length;i++) { %>
+                        <script src="/public/controllers/<%= page_scripts[i] %>"></script>
+                <% } %>
+        </body>
+</html>
