@@ -13,24 +13,10 @@
 		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 	</head>
 	<body>
-			<input type="text" id="text-input"><button type="button" id="button">Submit</button>
-		<div id="message-container"></div>
-
-	<eyes></eyes>
-	<eyes></eyes>
-
 
 		<script>
                         var socket = io();
 			
-			var button = document.getElementById('button');
-			var textInput = document.getElementById('text-input');
-			var messageContainer = document.getElementById('message-container');
-
-			button.addEventListener('click',function(){
-				socket.emit('message',textInput.value);
-				textInput.value = '';
-			});
 			socket.on('message',function(msg){
 				console.log('message!');
 				var elem = document.createElement('p');
@@ -38,7 +24,7 @@
 				messageContainer.insertBefore(elem,messageContainer.firstChild);
 			});
 
-			riot.mount('eyes');		
+			riot.mount('*');		
                 </script>
 	</body>
 </html>
