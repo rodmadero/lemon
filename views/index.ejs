@@ -10,12 +10,21 @@
 		<script src="/bower_components/riot/riot+compiler.js"></script>
 				
 		<script src="public/tags/eyes.tag" type="riot/tag"></script>
+        <script src="public/tags/field.tag" type="riot/tag"></script>
+        <script src="public/tags/submit.tag" type="riot/tag"></script>
+        
+        
 
 		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 	</head>
 	<body>
-			<input type="text" id="text-input"><button type="button" id="button">Submit</button>
+			<input type="text" id="text-input"><button class="btn-primary" type="button" id="button">SUBMIT</button>
 		<div id="message-container"></div>
+        
+    <field></field> 
+    <submit></submit>
+    
+    
 
 	<eyes></eyes>
 	<eyes></eyes>
@@ -39,7 +48,7 @@
 				messageContainer.insertBefore(elem,messageContainer.firstChild);
 			});
 
-			riot.mount('eyes');		
+			riot.mount('*');		
                 </script>
 	</body>
 </html>

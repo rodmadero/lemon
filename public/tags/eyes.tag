@@ -54,6 +54,7 @@
 			position: absolute;
 			height: 100px;
 			transition: all 300ms;
+            border-radius: 100px;
 		}
 	</style>
 
