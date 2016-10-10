@@ -16,6 +16,7 @@
       right: 5%;
       width: 15%;
       height: 40px;
+      border-radius: 5px;
       
      
       
