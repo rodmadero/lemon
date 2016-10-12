@@ -35,6 +35,6 @@ io.on('connection',function(socket){
 	});
 });
 
-http.listen(3000,function(){
-	console.log('App started on port 3000!');
+http.listen(3002,function(){
+	console.log('App started on port 3002!');
 });
