@@ -6,12 +6,12 @@ $(document).ready(function(){
 			color: getRandomColor(),
 			size: getInt(10,500)
 		};
-		addDot(options);
+		addEyes(options);
 		socket.emit('dot-added',options);
 	});
 
 	socket.on('dot-added',function(options){
-		addDot(options);
+		addEyes(options);
 	});
 });
 
@@ -29,6 +29,20 @@ var addDot = function(options) {
 	dot.style.borderRadius = options.size+'px';
 	dot.style.opacity = '0.5';
         dot.style.backgroundColor = options.color;	
+};
+
+var addEyes = function(options) {
+
+	var eyes = document.createElement('eyes');
+
+	eyes.style.position = 'absolute';
+	eyes.style.top = options.top+'px';
+	eyes.style.left = options.left+'px';
+
+	document.body.appendChild(eyes);
+
+	riot.mount('eyes');
+
 };
 
 var getInt = function(min,max) {

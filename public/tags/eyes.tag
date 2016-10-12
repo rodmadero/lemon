@@ -9,7 +9,8 @@
 	<!-- Then write the JS -->
 	<script>
 		var angle = 0,
-		    img = null,
+		    _img = null,
+		    _root = null,
 		    src = [
 			'http://www.drthomasphillips.com/wp-content/uploads/2015/05/How-to-maintain-healthy-eyes1.jpg',
 			'https://cdn.shopify.com/s/files/1/0873/9514/files/Wmm_303_Green.png?7542990654003841877',
@@ -19,9 +20,9 @@
 
 		var move = function() {
 			angle += 15 * getInt(-10,10);
-			img.style.transform = 'scale('+getInt(0,1)+'.'+getInt(1,9)+') rotateX('+angle+'deg) rotateZ('+angle+'deg) rotateY('+angle+'deg)';
-			img.style.top = getInt(1,90)+'%';
-			img.style.left = getInt(1,90)+'%';
+			_root.style.transform = 'scale('+getInt(0,1)+'.'+getInt(1,9)+') rotateX('+angle+'deg) rotateZ('+angle+'deg) rotateY('+angle+'deg)';
+			_root.style.top = getInt(1,90)+'%';
+			_root.style.left = getInt(1,90)+'%';
 		};
 
 		var getInt = function(min,max) {
@@ -36,12 +37,14 @@
 		});
 
 		this.on('mount',function(){
-			img = this.root.querySelector('img');
-			img.src = src[getInt(0,3)];
-			img.style.top = getInt()+'%';
-			img.style.left = getInt()+'%';
+			_root = this.root;
+			_img = this.root.querySelector('img');
+			
+			_img.src = src[getInt(0,3)];
+			_root.style.top = getInt()+'%';
+			_root.style.left = getInt()+'%';
 			var work = setInterval(move,getInt(300,500));
-			img.addEventListener('click',function(){
+			_img.addEventListener('click',function(){
 				clearInterval(work);
 			});
                 });
@@ -50,10 +53,13 @@
 	<!-- Finally, PUT THE CSS HERE -->
 
 	<style>
-		img {
+		eyes {
 			position: absolute;
 			height: 100px;
 			transition: all 300ms;
+		}
+		eyes img {
+			height: 100%;
 		}
 	</style>
 
