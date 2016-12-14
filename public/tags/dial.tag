@@ -88,14 +88,13 @@
 			width: 25px;
 		}
 		dial div.logo-container {
-			position: absolute;
-			top: 230px;
-			left: 554px;
+		    	position: relative;
+			top: -300px;
 			width: 24em;
 			height: 24em;
-			padding: 2.8em;
-			border-radius: 50%;
-			margin: 1.75em auto 0;
+		    	padding: 2.8em;
+		    	border-radius: 50%;
+		    	margin: 1.75em auto 0;	
 		}
 		dial div.logo-container div.logo {
 			margin: 0 auto;
