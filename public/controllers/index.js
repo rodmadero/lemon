@@ -46,3 +46,9 @@ function getRandomColor() {
     }
     return color;
 }
+riot.route(function(collection, id, action){
+	alert('hello');
+	return false;
+});
+riot.route.start();
+
