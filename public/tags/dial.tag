@@ -4,14 +4,9 @@
 <!--First, write the HTML  -->
 
 	<div class="dial-container">
-		<div class="notch deg0" />
-		<div class="notch deg45" />
-		<div class="notch deg90" />
-		<div class="notch deg135" />
-		<div class="notch deg180" />
-		<div class="notch deg225" />
-		<div class="notch deg270" />
-		<div class="notch deg315" />
+	</div>
+	<div class="logo-container">
+		<div class="logo" />
 	</div>
 	<!-- Then write the JS -->
 	<script>
@@ -22,53 +17,94 @@
 		this.on('mount',function(){
 			console.log('mount!',this);
 			var deg = 0;
+			this.buildNotches();
 			setInterval(function(){
 				deg -= 45 * Math.floor((Math.random() * 3) + 1);
 				this.rotate(deg);
-			}.bind(this),1000)
-       	});
+			}.bind(this),1000);  
+		});
 
 		this.rotate = function(deg) {
-			this.root.style.transform = 'rotate('+deg+'deg)';
+			this.root.firstChild.style.transform = 'rotate('+deg+'deg)';
 		};
-	</script>
+		this.buildNotches = function(){
+			for (var i=0;i<360;i+=3){
+				var notch = document.createElement('DIV'),
+					dot = document.createElement('DIV');
 
-	<!-- Finally, PUT THE CSS HERE -->
+				notch.className = 'perimeter notch';
+				dot.className = 'perimeter dot';
+
+				if (i % 45 === 0) { 
+					notch.className += ' highlight';
+					dot.className += ' highlight';
+				}
+
+				notch.style.transform = 'rotate('+i+'deg) translate(12em)';
+				dot.style.transform = 'rotate('+i+'deg) translate(11em)';				
+				
+				this.root.firstChild.appendChild(notch);
+				this.root.firstChild.appendChild(dot);
+			}
+		}
+	</script>
 
 	<style>
 		dial {
 			display: block;
 			margin: 200px;
-			transition: all 500ms;
 		}
 		dial div.dial-container {
 			position: relative;
  			width: 24em;
     		height: 24em;
 		 	padding: 2.8em;
-		 	// border: dashed 1px #FFF;
 		 	border-radius: 50%;
 		 	margin: 1.75em auto 0;
+			transition: all 500ms;
 		}
 
-		dial div.dial-container div.notch {
+		dial div.dial-container div.perimeter {
 			display: block;
 			overflow: hidden;
 			position: absolute;
 			top: 50%; left: 50%;
-			width: 20px; height: 2px;
-			margin: -1px; /* 2em = 4em/2 */ /* half the width */
-			background-color: #FFF;
+			background-color: #333;
 			transform-origin: left center;
 		}
-		.deg0 { transform: translate(12em); } /* 12em = half the width of the wrapper */
-		.deg45 { transform: rotate(45deg) translate(12em);}
-		.deg90 { transform: rotate(90deg) translate(12em);}
-		.deg135 { transform: rotate(135deg) translate(12em);}
-		.deg180 { transform: rotate(180deg) translate(12em); }
-		.deg225 { transform: rotate(225deg) translate(12em);}
-		.deg270 { transform: rotate(270deg) translate(12em); }
-		.deg315 { transform: rotate(315deg) translate(12em); }
+		dial div.dial-container div.perimeter.notch {
+			width: 20px;
+			height: 2px;
+		}
+		dial div.dial-container div.perimeter.dot {
+			width: 2px;
+			height: 2px;
+			border-radius: 2px;
+		}
+		dial div.dial-container div.perimeter.highlight {
+			background-color: #FFF;
+		}
+		dial div.dial-container div.perimeter.notch.highlight {
+			width: 25px;
+		}
+		dial div.logo-container {
+			position: absolute;
+			top: 230px;
+			left: 554px;
+			width: 24em;
+			height: 24em;
+			padding: 2.8em;
+			border-radius: 50%;
+			margin: 1.75em auto 0;
+		}
+		dial div.logo-container div.logo {
+			margin: 0 auto;
+			height: 155px;
+			width: 100px;
+			background-image: url(/public/img/dancingman.gif);
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+		}
 	</style>
 
 </dial>
