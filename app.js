@@ -26,7 +26,7 @@ app.locals.dependencies = {
 		'/public/tags/dial.tag'
 	]
 };
-app.locals.title = 'Spread the dots around!';
+app.locals.title = 'Lets make a dial';
 
 app.get('/',index.home);
 

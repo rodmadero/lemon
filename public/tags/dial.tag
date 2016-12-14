@@ -1,4 +1,4 @@
-<eyes>
+<dial>
 
 	
 <!--First, write the HTML  -->
@@ -19,7 +19,9 @@
 	<!-- Finally, PUT THE CSS HERE -->
 
 	<style>
-		
+		dial {
+			color: #FFF;
+		}	
 	</style>
 
-</eyes>
+</dial>
