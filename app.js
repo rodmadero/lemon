@@ -19,10 +19,11 @@ app.locals.dependencies = {
 		'/bower_components/riot/riot+compiler.js'
 	],
 	css: [
-		'/bower_components/bootstrap/dist/css/bootstrap.css'
+		'/bower_components/bootstrap/dist/css/bootstrap.css',
+		'/public/css/index.css'
 	],
 	tags: [
-		'/public/tags/eyes.tag'
+		'/public/tags/dial.tag'
 	]
 };
 app.locals.title = 'Spread the dots around!';
