@@ -7,34 +7,39 @@
 
     <script>
         this.on('mount',function(){
-            var deg = 0;
             this.dialContainer = $(this.root).children('.dial-container');
             this.perimeter = [];
+            this.dragging = false;
+            this.currentPosition = 0;
+			this.autoRotating = false;
 
             this.buildPerimeter();
             this.initListeners();
+
         });
 
         this.initListeners = function(){
             var h_x,h_y,
                 o_x,o_y,
                 s_x,s_y,s_rad,
-                dragging=false,
                 last_angle;
             this.dialContainer.on('mousedown touchstart',function(e){
                 h_x = e.pageX || e.originalEvent.touches[0].pageX;
                 h_y = e.pageY || e.originalEvent.touches[0].pageY;
                 e.preventDefault();
                 e.stopPropagation();
-                dragging = true;
-                if(!this.dialContainer.data('origin')) this.setOrigin();
-                                    
-                o_x = this.dialContainer.data('origin').left;
-                o_y = this.dialContainer.data('origin').top; // origin point
+                this.dragging = true;
+
+                if (!this.rotationOrigin) this.setOrigin();
+
+                clearInterval(this.interval);
+
+                o_x = this.rotationOrigin.left;
+                o_y = this.rotationOrigin.top; // origin point
                 
                 last_angle = this.dialContainer.data("last_angle") || 0;
                 $(document.body).on('mousemove touchmove',function(e){
-                   if(dragging){
+                   if(this.dragging){
                         s_x = e.pageX || e.originalEvent.touches[0].pageX;
                         s_y = e.pageY || e.originalEvent.touches[0].pageY; // start rotate point
                         if(s_x !== o_x && s_y !== o_y){ // start rotate
@@ -47,36 +52,35 @@
                 }.bind(this));
             }.bind(this));
             $(document.body).on('mouseup touchend',function(e){
-                if ( dragging ) {
-                    dragging = false;
-                    s_x = e.pageX || e.originalEvent.changedTouches[0].pageX;
-                    s_y = e.pageY || e.originalEvent.changedTouches[0].pageY;
-                    // save last angle for future iterations
-                    s_rad = Math.atan2(s_y - o_y, s_x - o_x); // current to origin
-                    s_rad -= Math.atan2(h_y - o_y, h_x - o_x); // handle to origin
-                    var degree = this.tameDegree(this.getDegree(s_rad) + last_angle);
-                    this.toNearestNotch(degree,90);
+                if ( this.dragging ) {
+                    this.dragging = false;
+                    this.toNearestNotch(this.currentPosition,90);
                 }
                 $(document.body).off('mousemove touchmove');
             }.bind(this));
         }
 
         this.setOrigin = function() {
-            this.dialContainer.data('origin',{
+            this.rotationOrigin = {
                 left: this.dialContainer.offset().left + this.dialContainer.outerWidth()/2, 
                 top: this.dialContainer.offset().top + this.dialContainer.outerHeight()/2
-            });
+            };
         };
 
         this.rotate = function(degree) {
 
-            if (degree <= -270) {
-                var currentAngle = this.dialContainer.data('current-angle');
-                var closest = [0,-270].reduce(function (prev, curr) {
-                    return (Math.abs(curr - currentAngle) < Math.abs(prev - currentAngle) ? curr : prev);
-                });
-                degree = closest; 
+            if (degree < -270) {
+                if (this.autoRotating) {
+					this.autoRotate.stop();
+				}
+				if (this.currentPosition < -135) { 
+					degree = -270;
+				} else {
+					degree = 0;
+				}
             }
+
+			if (Math.abs(degree - this.currentPosition) > 90) return;
 
             this.dialContainer.css('transform','rotate('+degree+'deg)')
                 .css('transform-origin','rotate('+degree+'deg)')
@@ -87,8 +91,7 @@
                 .css('-o-transform', 'rotate(' + degree + 'deg)')
                 .css('-o-transform-origin', '50% 50%')
                 .css('-ms-transform', 'rotate(' + degree + 'deg)')
-                .css('-ms-transform-origin', '50% 50%')
-                .data('current-angle',degree);
+                .css('-ms-transform-origin', '50% 50%');
 
             for (var i=0;i<this.perimeter.length;i++) {
                 if (Math.abs(Math.round(degree) + Math.round(this.perimeter[i].deg)) < 2) {
@@ -99,6 +102,10 @@
                     $(this.perimeter[i].dot).removeClass('highlight');
                 }
             }
+
+            this.currentPosition = degree;
+
+            this.signalSlideChange((degree/90)*-1);
         };
 
         this.setTransition = function(transition) {
@@ -108,20 +115,38 @@
         this.toNearestNotch = function(degree,factor) {
             var nearest = Math.round(degree / factor) * factor;
             this.dialContainer.data('last_angle',nearest);
-            this.autoRotate(nearest);
-        }
+            this.autoRotate.start(nearest);
+        };
 
-        this.autoRotate = function(deg){
-            this.dialContainer.on('transitionend mousedown touchstart',function(){   
-                this.setTransition('none');
-            }.bind(this));
-            this.setTransition('transform 500ms');
-             
-            this.rotate(deg);
+        this.autoRotate = {
+				start: function(deg){
+
+					var direction = (deg > this.currentPosition) ? 1 : -1;
+					this.autoRotating = true;
+
+					this.interval = setInterval(function(){
+						if (this.currentPosition !== deg) {
+							this.rotate(Math.floor(this.currentPosition+direction));
+						} else {
+							this.autoRotate.stop();
+						}
+					}.bind(this),15);
+
+				}.bind(this),
+				stop: function() {
+					this.autoRotating = false;
+					clearInterval(this.interval);
+				}
+		};
+
+        this.signalSlideChange = function(slide) {
+            var event = new Event('change-slide');
+			event.slide = slide;
+			$(this.root).parent().children('carousel')[0].dispatchEvent(event);
         };
 
         this.getDegree = function(rad) {
-            var degree = (rad * (360 / (2 * Math.PI)))
+            var degree = Math.round((rad * (360 / (2 * Math.PI))));
             return degree;
         };
 
@@ -188,23 +213,23 @@
             overflow: hidden;
             position: absolute;
             top: 50%; left: 50%;
-            background-color: #333;
+            background-color: #878787;
             transform-origin: left center;
         }
         dial div.dial-container div.perimeter.notch {
-            width: 20px;
+            width: 15px;
             height: 2px;
         }
         dial div.dial-container div.perimeter.dot {
-            width: 2px;
-            height: 2px;
-            border-radius: 2px;
+            width: 4px;
+            height: 4px;
+            border-radius: 5px;
         }
         dial div.dial-container div.perimeter.highlight {
             background-color: #FFF;
         }
         dial div.dial-container div.perimeter.notch.long {
-            width: 30px;
+            width: 20px;
         }
         dial div.logo-container {
             position: absolute;

@@ -23,7 +23,8 @@ app.locals.dependencies = {
 		'/public/css/index.css'
 	],
 	tags: [
-		'/public/tags/dial.tag'
+		'/public/tags/dial.tag',
+		'/public/tags/carousel.tag'
 	]
 };
 app.locals.title = 'Lets make a dial';
