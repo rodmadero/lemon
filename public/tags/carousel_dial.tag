@@ -83,6 +83,7 @@
                 s_x,s_y,s_rad,
                 last_angle;
             this.dialContainer.on('mousedown touchstart',function(e){
+				console.log('touch');
                 h_x = e.pageX || e.originalEvent.touches[0].pageX;
                 h_y = e.pageY || e.originalEvent.touches[0].pageY;
                 e.preventDefault();
@@ -281,12 +282,12 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: 15%;
+            top: -10%;
             bottom: 0;
         }
-        @media (max-height: 800px) {
+        @media (max-height: 775px) {
             carousel-dial {
-                top: 8%;
+                top: 0;
             }
         }
         @media (max-height: 500px) {
@@ -295,7 +296,7 @@
             }
         }
         carousel-dial div.dial-container {
-            position: relative;
+            position: absolute;
             left: 0;
             right: 0;
             top: 0;
@@ -339,7 +340,7 @@
 
         carousel-dial div.highlight-container {
             position: relative;
-            top: 0;
+            top: 50%;
             left: 50%;
         }
 
@@ -384,10 +385,10 @@
         }
 
         carousel-dial div.logo-container {
-            position: relative;
+            position: absolute;
             left: 0;
             right: 0;
-            top: 100px;
+            top: 10px;
             bottom: 0;
             width: 430px;
             height: 200px;
