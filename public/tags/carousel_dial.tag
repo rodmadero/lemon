@@ -254,7 +254,7 @@
 
                     notch.style.transform = 'rotate('+i+'deg) translate('+this.sizes[this.size].notchRadius+'px)';
                     dot.style.transform = 'rotate('+i+'deg) translate('+this.sizes[this.size].dotRadius+'px)';
-                    
+
                     this.dialContainer.append(notch);
                     this.dialContainer.append(dot);
 
@@ -323,7 +323,8 @@
             cursor: pointer;
         }
 
-        carousel-dial div.dial-container div.perimeter.notch.long:hover {
+        carousel-dial div.dial-container div.perimeter.notch.long:hover, 
+		carousel-dial div.dial-container div.perimeter.notch.long:hover + div.perimeter.dot {
             opacity: 1;
         }
 
@@ -339,7 +340,7 @@
         }
 
         carousel-dial div.highlight-container {
-            position: relative;
+            position: absolute;
             top: 50%;
             left: 50%;
         }
