@@ -5,6 +5,21 @@
         <button class="btn details-btn" type="button">VIEW DETAIL</button>
     </div>
 
+	<script>
+
+		this.on('mount',function(){
+			this.title = $(this.root).find('.details-text');
+			this.mixin('event-bus');
+			this.events.carousel.on('change-title',function(title){
+				this.title.fadeOut(500);
+				setInterval(function(){
+					this.title.html(title).fadeIn(500);
+				}.bind(this),500);
+			}.bind(this));
+		});
+
+	</script>
+
     <style>
         carousel-details div.details-container {
             position: absolute;

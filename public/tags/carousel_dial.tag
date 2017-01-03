@@ -3,7 +3,7 @@
     <div class="logo-container">
         <div class="logo" />
         <div class="tagline">
-            TRANSPORTIVE VR EXPERIENCES
+            STORIES IN VIRTUAL REALITY
         </div>
     </div>
     <div class="dial-container" />
@@ -180,6 +180,10 @@
             this.currentPosition = degree;
 
             this.events.carousel.trigger('change-slide',(degree/this.notchFactor)*-1);
+			console.log('look!',degree/this.notchFactor);
+			if (Number.isInteger(degree/this.notchFactor)){
+				this.events.carousel.trigger('change-title','HI JON');
+			}
         };
 
         this.nearestNotch = function() {
@@ -216,6 +220,7 @@
                 this.autoRotating = false;
 				this.lastAngle = this.currentPosition;
                 clearInterval(this.interval);
+
             }.bind(this)
 		};
 
