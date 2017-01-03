@@ -1,4 +1,4 @@
-<carousel>
+<carousel-bg>
 	<div class="slides-container"></div>
 	<div class="overlay"></div>
 
@@ -14,6 +14,8 @@
 		this.init = function() {
 
 			this.slidesContainer = $(this.root).children('.slides-container');
+
+            this.mixin('event-bus');
 
 			for (var i=0;i<this.images.length;i++) {
 
@@ -36,17 +38,19 @@
 				this.slidesContainer.append(element);
 			}
 
-			this.root.addEventListener('change-slide',function(e){
+			this.events.carousel.on('change-slide',function(slide){
+
 				this.slidesContainer.children('.visible').removeClass('visible').css('opacity',0);
 
-                if (e.slide % 1 === 0) {
-				    $(this.slides[e.slide].element).addClass('visible').css('opacity',1).css('filter','blur(0)');
+                if (slide % 1 === 0) {
+				    $(this.slides[slide].element).addClass('visible').css('opacity',1).css('filter','blur(0)');
                 } else {
-                    var remainder = e.slide - Math.floor(e.slide),
+                    var remainder = slide - Math.floor(slide),
                         blur = Math.abs(Math.abs(parseInt((remainder*10)) - 5) - 5)*1.7+'px';
-                    $(this.slides[Math.ceil(e.slide)].element).addClass('visible').css('opacity',remainder).css('filter','blur('+blur+')');
-                    $(this.slides[Math.floor(e.slide)].element).addClass('visible').css('opacity',1).css('filter','blur('+blur+')');
+                    $(this.slides[Math.ceil(slide)].element).addClass('visible').css('opacity',remainder).css('filter','blur('+blur+')');
+                    $(this.slides[Math.floor(slide)].element).addClass('visible').css('opacity',1).css('filter','blur('+blur+')');
                 }
+
 			}.bind(this));
 
 		};
@@ -55,26 +59,28 @@
 	</script>
 
 	<style>
-		carousel div.slides-container {
+		carousel-bg div.slides-container {
 			position: absolute;
 			top: 0;
 			left: 0;
 			height: 100%;
 			width: 100%;
 		}
-		carousel div.slides-container div.slide {
+		carousel-bg div.slides-container div.slide {
 			position: absolute;
 			top: 0;
 			left: 0;
 			height: 100%;
 			width: 100%;
 			opacity: 0;
-			background-size: 100% 100%;
+			background-size: auto 100%;
+            background-position: center;
+            background-repeat: no-repeat;
 		}
-		carousel div.slides-container div.slide.visible {
+		carousel-bg div.slides-container div.slide.visible {
 			opacity: 1;
 		}
-		carousel div.overlay {
+		carousel-bg div.overlay {
 			height: 100%;
 			width: 100%;
 			position: absolute;
@@ -87,4 +93,4 @@
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e6000000',GradientType=0 ); /* IE6-9 */
 		}
 	</style>
-</carousel>
+</carousel-bg>

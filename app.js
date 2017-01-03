@@ -10,21 +10,24 @@ app.set('view engine', 'ejs');
 app.use('/node_modules', express.static('node_modules'));
 app.use('/bower_components', express.static('bower_components'));
 app.use('/public', express.static('public'));
+app.use('/img', express.static('public/img'));
 
 app.locals.dependencies = {
 	js: [
 		'/node_modules/socket.io-client/socket.io.js',
 		'/bower_components/jquery/dist/jquery.js',
 		'/bower_components/bootstrap/dist/js/bootstrap.js',
-		'/bower_components/riot/riot+compiler.js'
+		'/bower_components/riot/riot+compiler.js',
 	],
 	css: [
 		'/bower_components/bootstrap/dist/css/bootstrap.css',
 		'/public/css/index.css'
 	],
 	tags: [
-		'/public/tags/dial.tag',
-		'/public/tags/carousel.tag'
+		'/public/tags/carousel_arrow.tag',
+		'/public/tags/carousel_bg.tag',
+		'/public/tags/carousel_details.tag',
+		'/public/tags/carousel_dial.tag'
 	]
 };
 app.locals.title = 'Lets make a dial';
