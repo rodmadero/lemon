@@ -28,7 +28,8 @@ app.locals.dependencies = {
 		'/public/tags/carousel_arrow.tag',
 		'/public/tags/carousel_bg.tag',
 		'/public/tags/carousel_details.tag',
-		'/public/tags/carousel_dial.tag'
+		'/public/tags/carousel_dial.tag',
+		'/public/tags/explorer_selection.tag'
 	]
 };
 app.locals.title = 'Lets make a dial';

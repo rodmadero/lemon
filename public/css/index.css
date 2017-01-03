@@ -28,7 +28,6 @@ Blur - blur(3px)
 /*Text Shadow is horizontal / vertical / blur / shadow color */
 body {
   background-color: #000;
-  overflow: hidden;
 }
 .masthead {
   position: absolute;
