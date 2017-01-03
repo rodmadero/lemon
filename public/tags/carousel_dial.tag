@@ -374,7 +374,7 @@
         }
 
         carousel-dial div.highlight-container div.dot.highlight.medium {
-            transform: rotate(181deg) translate(132px);
+            transform: rotate(181deg) translate(153px);
         }
 
         carousel-dial div.highlight-container div.notch.highlight.small {
@@ -382,7 +382,7 @@
         }
 
         carousel-dial div.highlight-container div.dot.highlight.small {
-            transform: rotate(181.5deg) translate(88px);
+            transform: rotate(181.5deg) translate(107px);
         }
 
         carousel-dial div.logo-container {
