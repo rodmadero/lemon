@@ -1,10 +1,22 @@
 <carousel-arrow>
-    <div class="arrow-container">
+    <div class="arrow-container animated bounce">
         <p class="arrow-explore">
             EXPLORE
         </p>
         <img src="/img/ico-scroll-arrow.svg" class="arrow-img">
     </div>
+
+	<script>
+		this.on('mount',function(){
+			this.arrowContainer = $(this.root).children('.arrow-container');
+			setInterval(function(){
+				this.arrowContainer.removeClass('bounce');
+				setTimeout(function(){
+					this.arrowContainer.addClass('bounce');
+				}.bind(this),50);
+			}.bind(this),8000);
+		});
+	</script>
 
     <style>
         carousel-arrow div.arrow-container {
