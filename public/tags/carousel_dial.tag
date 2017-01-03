@@ -21,6 +21,7 @@
             this.currentPosition = 0;
             this.notchFactor = 90;
 			this.autoRotating = false;
+			this.lastAngle = 0;
             this.sizes = {
                 large: {
                     notchRadius: 220,
@@ -80,10 +81,8 @@
         this.initListeners = function(){
             var h_x,h_y,
                 o_x,o_y,
-                s_x,s_y,s_rad,
-                last_angle;
+                s_x,s_y,s_rad;
             this.dialContainer.on('mousedown touchstart',function(e){
-				console.log('touch');
                 h_x = e.pageX || e.originalEvent.touches[0].pageX;
                 h_y = e.pageY || e.originalEvent.touches[0].pageY;
                 e.preventDefault();
@@ -96,7 +95,6 @@
                 o_x = this.rotationOrigin.left;
                 o_y = this.rotationOrigin.top; // origin point
                 
-                last_angle = this.dialContainer.data("last_angle") || 0;
                 $(document.body).on('mousemove touchmove',function(e){
                     this.dragging = true;
                     s_x = e.pageX || e.originalEvent.touches[0].pageX;
@@ -104,7 +102,7 @@
                     if(s_x !== o_x && s_y !== o_y){ // start rotate
                         s_rad = Math.atan2(s_y - o_y, s_x - o_x); // current to origin
                         s_rad -= Math.atan2(h_y - o_y, h_x - o_x); // handle to origin
-                        var degree = this.tameDegree(this.getDegree(s_rad) + last_angle);
+                        var degree = this.tameDegree(this.getDegree(s_rad) + this.lastAngle);
                         this.rotate(degree);
                     }
                 }.bind(this));
@@ -120,6 +118,7 @@
                     e.preventDefault();
                     e.stopPropagation();
                 }
+				this.lastAngle = this.nearestNotch();
                 $(document.body).off('mousemove touchmove');
             }.bind(this));
             $(document.body).on('keydown',function(e){
@@ -158,7 +157,7 @@
                 if (this.autoRotating) {
 					this.autoRotate.stop();
 				}
-				if (this.currentPosition < -135) { 
+				if (this.currentPosition < -135) {
 					degree = -270;
 				} else {
 					degree = 0;
@@ -215,6 +214,7 @@
 
             stop: function() {
                 this.autoRotating = false;
+				this.lastAngle = this.currentPosition;
                 clearInterval(this.interval);
             }.bind(this)
 		};
@@ -285,14 +285,14 @@
             top: -10%;
             bottom: 0;
         }
-        @media (max-height: 775px) {
+        @media (max-height: 755px) {
             carousel-dial {
                 top: 0;
             }
         }
-        @media (max-height: 500px) {
+        @media (max-height: 550px) {
             carousel-dial {
-                top: 10px;
+                top: -20%;
             }
         }
         carousel-dial div.dial-container {

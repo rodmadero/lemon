@@ -31,6 +31,12 @@
             transition: opacity 500ms;
         }
 
+		@media(max-width: 700px){
+			carousel-arrow div.arrow-container {
+				right: 0;
+			}
+		}
+
         carousel-arrow div.arrow-container p.arrow-explore {
             font-size: 14px;
             color: #cacaca;

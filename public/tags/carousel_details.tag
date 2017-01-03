@@ -15,6 +15,16 @@
             padding-left: 50px;
             border-left: 3px solid #9c27b0;
         }
+		@media(max-width: 1100px) {
+			carousel-details div.details-container {
+				left: 0;
+			}
+		}
+		@media(max-width: 700px) {
+			carousel-details div.details-container {
+				padding-left: 10px;
+			}
+		}
         carousel-details div.details-container img.details-icon{
             height: 48px;
             margin-bottom: 25px;
@@ -25,6 +35,12 @@
             line-height: 32px;
             margin-bottom: 25px;
         }
+		@media (max-width: 900px) {
+			carousel-details div.details-container p.details-text{
+				font-size: 15px;
+				line-height: 25px;
+			}
+		}
         carousel-details div.details-container button.details-btn {
             background-color: #ff9800;
             height: 50px;
