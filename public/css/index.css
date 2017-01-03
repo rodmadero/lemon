@@ -1,3 +1,367 @@
+/* Colors */
+/** Main **/
+/** secondary **/
+/** link **/
+/** categories **/
+/* inset | horizontalpx | verticalpx | blurpx | spreadpx | color: #000 */
+.box-shadow-light {
+  -webkit-box-shadow: 0px 0px 45px #fff;
+  -moz-box-shadow: 0px 0px 45px #fff;
+  box-shadow: 0px 0px 45px #fff;
+}
+/* transform */
+/* General transform
+had skew() and rotate()
+*/
+/* transition 
+    transition | time | timingfunction | delay
+*/
+/* two transitions */
+/*Border radius*/
+/* Animation */
+/* Filter 
+Blur - blur(3px) 
+*/
+/* Background Size */
+/*Background Gradient + Opacity */
+/* Opacity opacity1 is decimal / opacity2 is out of 100 */
+/*Text Shadow is horizontal / vertical / blur / shadow color */
 body {
-	background-color: #000;
+  background-color: #000;
+  overflow: hidden;
+}
+.masthead {
+  position: absolute;
+  right: 0px;
+  left: 0;
+  margin: 0 auto;
+  top: 20px;
+  display: none;
+}
+@media (max-width: 1440px) {
+  .masthead {
+    display: block;
+  }
+}
+.btn {
+  border-radius: 0px;
+}
+.container {
+  width: 100%;
+  max-width: 290px;
+  margin: 0px auto;
+}
+.container > .row {
+  margin: 0 -11px;
+}
+.container > .row .col-xs-1,
+.container > .row .col-xs-2,
+.container > .row .col-xs-3,
+.container > .row .col-xs-4,
+.container > .row .col-xs-5,
+.container > .row .col-xs-6,
+.container > .row .col-xs-7,
+.container > .row .col-xs-8,
+.container > .row .col-xs-9,
+.container > .row .col-xs-10,
+.container > .row .col-xs-11,
+.container > .row .col-xs-12 {
+  padding: 0 11px;
+}
+@media (min-width: 568px) {
+  .container {
+    max-width: 528px;
+  }
+  .container > .row {
+    margin: 0 -9px;
+  }
+  .container > .row .col-xs-1,
+  .container > .row .col-xs-2,
+  .container > .row .col-xs-3,
+  .container > .row .col-xs-4,
+  .container > .row .col-xs-5,
+  .container > .row .col-xs-6,
+  .container > .row .col-xs-7,
+  .container > .row .col-xs-8,
+  .container > .row .col-xs-9,
+  .container > .row .col-xs-10,
+  .container > .row .col-xs-11,
+  .container > .row .col-xs-12 {
+    padding: 0 9px;
+  }
+}
+@media (min-width: 576px) and (max-width: 639px) {
+  .container {
+    max-width: 528px;
+  }
+  .container > .row {
+    margin: 0 -9px;
+  }
+  .container > .row .col-xs-1,
+  .container > .row .col-xs-2,
+  .container > .row .col-xs-3,
+  .container > .row .col-xs-4,
+  .container > .row .col-xs-5,
+  .container > .row .col-xs-6,
+  .container > .row .col-xs-7,
+  .container > .row .col-xs-8,
+  .container > .row .col-xs-9,
+  .container > .row .col-xs-10,
+  .container > .row .col-xs-11,
+  .container > .row .col-xs-12,
+  .container > .row .col-sm-1,
+  .container > .row .col-sm-2,
+  .container > .row .col-sm-3,
+  .container > .row .col-sm-4,
+  .container > .row .col-sm-5,
+  .container > .row .col-sm-6,
+  .container > .row .col-sm-7,
+  .container > .row .col-sm-8,
+  .container > .row .col-sm-9,
+  .container > .row .col-sm-10,
+  .container > .row .col-sm-11,
+  .container > .row .col-sm-12 {
+    padding: 0 9px;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 528px;
+  }
+  .container > .row {
+    margin: 0 -9px;
+  }
+  .container > .row .col-sm-1,
+  .container > .row .col-sm-2,
+  .container > .row .col-sm-3,
+  .container > .row .col-sm-4,
+  .container > .row .col-sm-5,
+  .container > .row .col-sm-6,
+  .container > .row .col-sm-7,
+  .container > .row .col-sm-8,
+  .container > .row .col-sm-9,
+  .container > .row .col-sm-10,
+  .container > .row .col-sm-11,
+  .container > .row .col-sm-12 {
+    padding: 0 9px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+  .container > .row {
+    margin: 0 -12px;
+  }
+  .container > .row .col-xs-1,
+  .container > .row .col-xs-2,
+  .container > .row .col-xs-3,
+  .container > .row .col-xs-4,
+  .container > .row .col-xs-5,
+  .container > .row .col-xs-6,
+  .container > .row .col-xs-7,
+  .container > .row .col-xs-8,
+  .container > .row .col-xs-9,
+  .container > .row .col-xs-10,
+  .container > .row .col-xs-11,
+  .container > .row .col-xs-12,
+  .container > .row .col-sm-1,
+  .container > .row .col-sm-2,
+  .container > .row .col-sm-3,
+  .container > .row .col-sm-4,
+  .container > .row .col-sm-5,
+  .container > .row .col-sm-6,
+  .container > .row .col-sm-7,
+  .container > .row .col-sm-8,
+  .container > .row .col-sm-9,
+  .container > .row .col-sm-10,
+  .container > .row .col-sm-11,
+  .container > .row .col-sm-12,
+  .container > .row .col-md-1,
+  .container > .row .col-md-2,
+  .container > .row .col-md-3,
+  .container > .row .col-md-4,
+  .container > .row .col-md-5,
+  .container > .row .col-md-6,
+  .container > .row .col-md-7,
+  .container > .row .col-md-8,
+  .container > .row .col-md-9,
+  .container > .row .col-md-10,
+  .container > .row .col-md-11,
+  .container > .row .col-md-12 {
+    padding: 0 12px;
+  }
+}
+@media (min-width: 993px) and (max-width: 1023px) {
+  .container {
+    max-width: 720px;
+  }
+  .container > .row {
+    margin: 0 -12px;
+  }
+  .container > .row .col-md-1,
+  .container > .row .col-md-2,
+  .container > .row .col-md-3,
+  .container > .row .col-md-4,
+  .container > .row .col-md-5,
+  .container > .row .col-md-6,
+  .container > .row .col-md-7,
+  .container > .row .col-md-8,
+  .container > .row .col-md-9,
+  .container > .row .col-md-10,
+  .container > .row .col-md-11,
+  .container > .row .col-md-12 {
+    padding: 0 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 940px;
+  }
+  .container > .row {
+    margin: 0 -16px;
+  }
+  .container > .row .col-xs-1,
+  .container > .row .col-xs-2,
+  .container > .row .col-xs-3,
+  .container > .row .col-xs-4,
+  .container > .row .col-xs-5,
+  .container > .row .col-xs-6,
+  .container > .row .col-xs-7,
+  .container > .row .col-xs-8,
+  .container > .row .col-xs-9,
+  .container > .row .col-xs-10,
+  .container > .row .col-xs-11,
+  .container > .row .col-xs-12,
+  .container > .row .col-sm-1,
+  .container > .row .col-sm-2,
+  .container > .row .col-sm-3,
+  .container > .row .col-sm-4,
+  .container > .row .col-sm-5,
+  .container > .row .col-sm-6,
+  .container > .row .col-sm-7,
+  .container > .row .col-sm-8,
+  .container > .row .col-sm-9,
+  .container > .row .col-sm-10,
+  .container > .row .col-sm-11,
+  .container > .row .col-sm-12,
+  .container > .row .col-md-1,
+  .container > .row .col-md-2,
+  .container > .row .col-md-3,
+  .container > .row .col-md-4,
+  .container > .row .col-md-5,
+  .container > .row .col-md-6,
+  .container > .row .col-md-7,
+  .container > .row .col-md-8,
+  .container > .row .col-md-9,
+  .container > .row .col-md-10,
+  .container > .row .col-md-11,
+  .container > .row .col-md-12,
+  .container > .row .col-lg-1,
+  .container > .row .col-lg-2,
+  .container > .row .col-lg-3,
+  .container > .row .col-lg-4,
+  .container > .row .col-lg-5,
+  .container > .row .col-lg-6,
+  .container > .row .col-lg-7,
+  .container > .row .col-lg-8,
+  .container > .row .col-lg-9,
+  .container > .row .col-lg-10,
+  .container > .row .col-lg-11,
+  .container > .row .col-lg-12 {
+    padding: 0 16px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .container {
+    max-width: 940px;
+  }
+  .container > .row {
+    margin: 0 -16px;
+  }
+  .container > .row .col-lg-1,
+  .container > .row .col-lg-2,
+  .container > .row .col-lg-3,
+  .container > .row .col-lg-4,
+  .container > .row .col-lg-5,
+  .container > .row .col-lg-6,
+  .container > .row .col-lg-7,
+  .container > .row .col-lg-8,
+  .container > .row .col-lg-9,
+  .container > .row .col-lg-10,
+  .container > .row .col-lg-11,
+  .container > .row .col-lg-12 {
+    padding: 0 16px;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    width: 100%;
+    max-width: 1140px;
+  }
+  .container > .row {
+    margin: 0 -12px;
+  }
+  .container > .row .col-xs-1,
+  .container > .row .col-xs-2,
+  .container > .row .col-xs-3,
+  .container > .row .col-xs-4,
+  .container > .row .col-xs-5,
+  .container > .row .col-xs-6,
+  .container > .row .col-xs-7,
+  .container > .row .col-xs-8,
+  .container > .row .col-xs-9,
+  .container > .row .col-xs-10,
+  .container > .row .col-xs-11,
+  .container > .row .col-xs-12,
+  .container > .row .col-sm-1,
+  .container > .row .col-sm-2,
+  .container > .row .col-sm-3,
+  .container > .row .col-sm-4,
+  .container > .row .col-sm-5,
+  .container > .row .col-sm-6,
+  .container > .row .col-sm-7,
+  .container > .row .col-sm-8,
+  .container > .row .col-sm-9,
+  .container > .row .col-sm-10,
+  .container > .row .col-sm-11,
+  .container > .row .col-sm-12,
+  .container > .row .col-md-1,
+  .container > .row .col-md-2,
+  .container > .row .col-md-3,
+  .container > .row .col-md-4,
+  .container > .row .col-md-5,
+  .container > .row .col-md-6,
+  .container > .row .col-md-7,
+  .container > .row .col-md-8,
+  .container > .row .col-md-9,
+  .container > .row .col-md-10,
+  .container > .row .col-md-11,
+  .container > .row .col-md-12,
+  .container > .row .col-lg-1,
+  .container > .row .col-lg-2,
+  .container > .row .col-lg-3,
+  .container > .row .col-lg-4,
+  .container > .row .col-lg-5,
+  .container > .row .col-lg-6,
+  .container > .row .col-lg-7,
+  .container > .row .col-lg-8,
+  .container > .row .col-lg-9,
+  .container > .row .col-lg-10,
+  .container > .row .col-lg-11,
+  .container > .row .col-lg-12,
+  .container > .row .col-xl-1,
+  .container > .row .col-xl-2,
+  .container > .row .col-xl-3,
+  .container > .row .col-xl-4,
+  .container > .row .col-xl-5,
+  .container > .row .col-xl-6,
+  .container > .row .col-xl-7,
+  .container > .row .col-xl-8,
+  .container > .row .col-xl-9,
+  .container > .row .col-xl-10,
+  .container > .row .col-xl-11,
+  .container > .row .col-xl-12 {
+    padding: 0 12px;
+  }
 }
