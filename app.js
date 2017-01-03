@@ -21,6 +21,7 @@ app.locals.dependencies = {
 	],
 	css: [
 		'/bower_components/bootstrap/dist/css/bootstrap.css',
+		'/public/css/animate.css',
 		'/public/css/index.css'
 	],
 	tags: [
